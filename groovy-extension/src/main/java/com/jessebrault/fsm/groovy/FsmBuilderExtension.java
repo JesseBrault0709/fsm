@@ -14,10 +14,7 @@ public class FsmBuilderExtension {
             > B whileIn(
             B self,
             S state,
-            @DelegatesTo(
-                    strategy = Closure.DELEGATE_FIRST,
-                    type = "com.jessebrault.fsm.TransitionSetBuilder<I, S, C, R>"
-            )
+            @DelegatesTo(strategy = Closure.DELEGATE_FIRST, type = "TSB")
             Closure<?> configureState
     ) {
         self.whileIn(state, tsb -> {

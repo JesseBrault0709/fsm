@@ -7,16 +7,16 @@ repositories {
 }
 
 dependencies {
-    testImplementation project(':api')
+    implementation project(':api')
 
-    testImplementation project(':greeting-fsm')
+    implementation project(':greeting-fsm')
 
-    testImplementation project(':groovy-extension')
+    implementation project(':groovy-extension')
 
-    testRuntimeOnly project(':impl')
+    runtimeOnly project(':impl')
 
     // https://mvnrepository.com/artifact/org.apache.groovy/groovy
-    testImplementation 'org.apache.groovy:groovy:4.0.3'
+    implementation 'org.apache.groovy:groovy:4.0.3'
 
     // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
@@ -26,12 +26,6 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
-
-    // https://mvnrepository.com/artifact/org.mockito/mockito-core
-    testImplementation 'org.mockito:mockito-core:4.6.1'
-
-    // https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter
-    testImplementation 'org.mockito:mockito-junit-jupiter:4.6.1'
 }
 
 test {

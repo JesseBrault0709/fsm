@@ -1,0 +1,4 @@
+08/08/22
+* Get rid of exec(Runnable)
+    * Get rid of impl dep on Groovy
+* Get rid of FiniteStateMachine.getCurrentState; figure out if to use Vavr tuples ??

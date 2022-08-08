@@ -13,7 +13,8 @@ import java.util.ServiceLoader;
  * @param <I> Fsm input type
  * @param <S> Fsm state type
  */
-public interface SimpleFsmBuilder<I, S> extends FsmBuilder<I, S, I, I, SimpleFsmBuilder<I, S>> {
+public interface SimpleFsmBuilder<I, S>
+        extends FsmBuilder<I, S, I, I, SimpleFsmBuilder<I, S>, SimpleTransitionSetBuilder<I, S>> {
 
     interface Factory {
         <I, S> SimpleFsmBuilder<I, S> getBuilder();

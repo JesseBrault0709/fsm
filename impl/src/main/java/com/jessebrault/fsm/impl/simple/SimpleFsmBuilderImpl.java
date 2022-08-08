@@ -4,11 +4,19 @@ import com.jessebrault.fsm.FiniteStateMachine;
 import com.jessebrault.fsm.impl.AbstractFsmBuilderImpl;
 import com.jessebrault.fsm.impl.FsmImpl;
 import com.jessebrault.fsm.simple.SimpleFsmBuilder;
+import com.jessebrault.fsm.simple.SimpleTransitionSetBuilder;
 
 import java.util.Objects;
 
-final class SimpleFsmBuilderImpl<I, S> extends AbstractFsmBuilderImpl<I, S, I, I, SimpleFsmBuilder<I, S>>
-        implements SimpleFsmBuilder<I, S> {
+final class SimpleFsmBuilderImpl<I, S> extends AbstractFsmBuilderImpl<
+        I, S, I, I,
+        SimpleFsmBuilder<I, S>,
+        SimpleTransitionSetBuilder<I, S>
+        > implements SimpleFsmBuilder<I, S> {
+
+    public SimpleFsmBuilderImpl() {
+        super(SimpleTransitionSetBuilderImpl::new);
+    }
 
     @Override
     protected SimpleFsmBuilder<I, S> getThis() {

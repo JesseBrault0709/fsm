@@ -2,13 +2,21 @@ package com.jessebrault.fsm.impl.function;
 
 import com.jessebrault.fsm.FiniteStateMachine;
 import com.jessebrault.fsm.function.FunctionFsmBuilder;
+import com.jessebrault.fsm.function.FunctionTransitionSetBuilder;
 import com.jessebrault.fsm.impl.AbstractFsmBuilderImpl;
 import com.jessebrault.fsm.impl.FsmImpl;
 
 import java.util.function.Function;
 
-final class FunctionFsmBuilderImpl<I, S, R> extends AbstractFsmBuilderImpl<I, S, Function<I, R>, R, FunctionFsmBuilder<I, S, R>>
-        implements FunctionFsmBuilder<I, S, R> {
+final class FunctionFsmBuilderImpl<I, S, R> extends AbstractFsmBuilderImpl<
+        I, S, Function<I, R>, R,
+        FunctionFsmBuilder<I, S, R>,
+        FunctionTransitionSetBuilder<I, S, R>
+        > implements FunctionFsmBuilder<I, S, R> {
+
+    FunctionFsmBuilderImpl() {
+        super(FunctionTransitionSetBuilderImpl::new);
+    }
 
     @Override
     protected FunctionFsmBuilder<I, S, R> getThis() {

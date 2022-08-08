@@ -37,4 +37,6 @@ public interface TransitionSetBuilder<I, S, C, R> {
      */
     OnNoMatchBuilder<I, S> onNoMatch();
 
+    TransitionSet<I, S, C, R> build();
+
 }

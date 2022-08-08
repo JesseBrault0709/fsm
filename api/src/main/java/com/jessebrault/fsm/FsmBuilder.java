@@ -15,12 +15,16 @@ import java.util.function.Consumer;
  * @param <C> Condition type
  * @param <R> Result type
  */
-public interface FsmBuilder<I, S, C, R, B extends FsmBuilder<I, S, C, R, B>> {
+public interface FsmBuilder<
+        I, S, C, R,
+        B extends FsmBuilder<I, S, C, R, B, TSB>,
+        TSB extends TransitionSetBuilder<I, S, C, R>
+        > {
 
     S getInitialState();
     B setInitialState(S state);
 
-    B whileIn(S state, Consumer<TransitionSetBuilder<I, S, C, R>> configureState);
+    B whileIn(S state, Consumer<TSB> configureState);
 
     FiniteStateMachine<I, S, R> build();
 

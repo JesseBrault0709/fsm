@@ -1,6 +1,7 @@
 package com.jessebrault.fsm.impl;
 
 import com.jessebrault.fsm.FiniteStateMachine;
+import com.jessebrault.fsm.TransitionSet;
 import com.jessebrault.fsm.impl.util.TriPredicate;
 
 import java.util.Map;
@@ -40,26 +41,26 @@ public final class FsmImpl<I, S, C, R> implements FiniteStateMachine<I, S, R> {
             );
         }
 
-        for (final var transition : transitionSet.transitions()) {
-            final var on = transition.on();
+        for (final var transition : transitionSet.getTransitions()) {
+            final var on = transition.getOn();
             final var result = this.inputFunction.apply(input, on);
             if (this.matcher.test(input, on, result)) {
                 // Successfully matched
-                final var shiftTo = transition.shiftTo();
+                final var shiftTo = transition.getShiftTo();
                 if (shiftTo != null) {
-                    this.curState = transition.shiftTo();
+                    this.curState = transition.getShiftTo();
                 }
-                transition.actions().forEach(action -> action.accept(result));
+                transition.getActions().forEach(action -> action.accept(result));
                 return result;
             }
         }
 
         // Did not match
-        final var noMatchShiftTo = transitionSet.noMatchShiftTo();
+        final var noMatchShiftTo = transitionSet.getNoMatchShiftTo();
         if (noMatchShiftTo != null) {
             this.curState = noMatchShiftTo;
         }
-        transitionSet.noMatchActions().forEach(action -> action.accept(input));
+        transitionSet.getNoMatchActions().forEach(action -> action.accept(input));
         return null;
     }
 

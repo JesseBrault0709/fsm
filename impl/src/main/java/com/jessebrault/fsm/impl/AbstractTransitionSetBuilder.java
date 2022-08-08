@@ -1,12 +1,14 @@
 package com.jessebrault.fsm.impl;
 
+import com.jessebrault.fsm.Transition;
+import com.jessebrault.fsm.TransitionSet;
 import com.jessebrault.fsm.TransitionSetBuilder;
 
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public final class TransitionSetBuilderImpl<I, S, C, R> implements TransitionSetBuilder<I, S, C, R> {
+public abstract class AbstractTransitionSetBuilder<I, S, C, R> implements TransitionSetBuilder<I, S, C, R> {
 
     private final Set<Transition<S, C, R>> transitions = new HashSet<>();
     private C curCondition;
@@ -19,22 +21,13 @@ public final class TransitionSetBuilderImpl<I, S, C, R> implements TransitionSet
         this.curOb = null;
     }
 
-    public void flush() {
+    private void flush() {
         if (this.curOb != null) {
             final var shiftTo = this.curOb.getShiftTo();
             final var actions = this.curOb.getActions();
-            final var transition = new Transition<>(this.curCondition, shiftTo, actions);
-            this.transitions.add(transition);
+            this.transitions.add(new TransitionImpl<>(this.curCondition, shiftTo, actions));
         }
         this.reset();
-    }
-
-    public TransitionSet<I, S, C, R> build() {
-        return new TransitionSet<>(
-                this.transitions,
-                this.onmb.getShiftTo(),
-                this.onmb.getActions()
-        );
     }
 
     @Override
@@ -50,6 +43,16 @@ public final class TransitionSetBuilderImpl<I, S, C, R> implements TransitionSet
     public OnNoMatchBuilderImpl<I, S> onNoMatch() {
         this.flush();
         return this.onmb;
+    }
+
+    @Override
+    public TransitionSet<I, S, C, R> build() {
+        this.flush();
+        return new TransitionSetImpl<>(
+                this.transitions,
+                this.onmb.getShiftTo(),
+                this.onmb.getActions()
+        );
     }
 
 }

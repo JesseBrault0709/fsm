@@ -15,7 +15,8 @@ import java.util.function.Predicate;
  * @param <I> Fsm input type
  * @param <S> Fsm state type
  */
-public interface PredicateFsmBuilder<I, S> extends FsmBuilder<I, S, Predicate<I>, I, PredicateFsmBuilder<I, S>> {
+public interface PredicateFsmBuilder<I, S>
+        extends FsmBuilder<I, S, Predicate<I>, I, PredicateFsmBuilder<I, S>, PredicateTransitionSetBuilder<I, S>> {
 
     interface Factory {
         <I, S> PredicateFsmBuilder<I, S> getBuilder();

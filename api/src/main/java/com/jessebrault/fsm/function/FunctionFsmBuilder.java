@@ -16,7 +16,11 @@ import java.util.function.Function;
  * @param <S> Fsm state type
  * @param <R> Condition function return type
  */
-public interface FunctionFsmBuilder<I, S, R> extends FsmBuilder<I, S, Function<I, R>, R, FunctionFsmBuilder<I, S, R>>{
+public interface FunctionFsmBuilder<I, S, R> extends FsmBuilder<
+        I, S, Function<I, R>, R,
+        FunctionFsmBuilder<I, S, R>,
+        FunctionTransitionSetBuilder<I, S, R>
+        >{
 
     interface Factory {
         <I, S, R> FunctionFsmBuilder<I, S, R> getBuilder();

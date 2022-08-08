@@ -1,0 +1,3 @@
+moduleName=Fsm Groovy Extension
+moduleVersion=0.0.1
+extensionClasses=com.jessebrault.fsm.groovy.FsmBuilderExtension,com.jessebrault.fsm.groovy.OnBuilderExtension,com.jessebrault.fsm.groovy.OnNoMatchBuilderExtension

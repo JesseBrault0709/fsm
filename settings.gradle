@@ -1,0 +1,17 @@
+pluginManagement {
+    repositories {
+        maven {
+            url 'https://archiva.jessebrault.com/repository/internal'
+        }
+        maven {
+            url 'https://archiva.jessebrault.com/repository/snapshots'
+        }
+    }
+}
+
+rootProject.name = 'fsm'
+include 'api'
+include 'greeting-fsm'
+include 'impl'
+include 'groovy-extension'
+include 'integration-example'

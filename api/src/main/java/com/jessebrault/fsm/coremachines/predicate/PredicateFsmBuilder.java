@@ -1,6 +1,6 @@
-package com.jessebrault.fsm.predicate;
+package com.jessebrault.fsm.coremachines.predicate;
 
-import com.jessebrault.fsm.FsmBuilder;
+import com.jessebrault.fsm.coremachines.builder.CoreFsmBuilder;
 
 import java.util.ServiceLoader;
 import java.util.function.Predicate;
@@ -15,15 +15,20 @@ import java.util.function.Predicate;
  * @param <I> Fsm input type
  * @param <S> Fsm state type
  */
-public interface PredicateFsmBuilder<I, S>
-        extends FsmBuilder<I, S, Predicate<I>, I, PredicateFsmBuilder<I, S>, PredicateTransitionSetBuilder<I, S>> {
+public interface PredicateFsmBuilder<I, S> extends CoreFsmBuilder<
+        I, S, Predicate<I>, I,
+        PredicateResult<I, S>,
+        PredicateFsm<I, S>,
+        PredicateFsmBuilder<I, S>,
+        PredicateStateConfigurator<I, S>
+        > {
 
-    interface Factory {
+    interface Service {
         <I, S> PredicateFsmBuilder<I, S> getBuilder();
     }
 
     static <I, S> PredicateFsmBuilder<I, S> get() {
-        return ServiceLoader.load(PredicateFsmBuilder.Factory.class)
+        return ServiceLoader.load(Service.class)
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("Cannot find an implementation of PredicateFsmBuilder.Factory"))
                 .getBuilder();

@@ -1,31 +1,5 @@
 package com.jessebrault.fsm;
 
-import java.util.function.Consumer;
-
-/**
- * The builder interface for building a Finite State Machine.
- * All provided builders in this library extend this interface.
- * The input type is what is given to the fsm during use, and the state type
- * represents the various states that the machine may be in.
- * States may either be of any type, but Strings, or better yet,
- * Enums, are recommended. See also the TransitionSetBuilder.
- *
- * @param <I> Input type
- * @param <S> State type
- * @param <C> Condition type
- * @param <R> Result type
- */
-public interface FsmBuilder<
-        I, S, C, R,
-        B extends FsmBuilder<I, S, C, R, B, TSB>,
-        TSB extends TransitionSetBuilder<I, S, C, R>
-        > {
-
-    S getInitialState();
-    B setInitialState(S state);
-
-    B whileIn(S state, Consumer<TSB> configureState);
-
-    FiniteStateMachine<I, S, R> build();
-
+public interface FsmBuilder<I, S, R extends Result<I, S>, M extends FiniteStateMachine<I, S, R>> {
+    M build();
 }

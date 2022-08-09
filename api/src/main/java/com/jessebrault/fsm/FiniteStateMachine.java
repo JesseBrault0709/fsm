@@ -12,9 +12,7 @@ package com.jessebrault.fsm;
  * @param <S> State type
  * @param <R> Result type
  */
-public interface FiniteStateMachine<I, S, R> {
-
-    S getCurrentState();
+public interface FiniteStateMachine<I, S, R extends Result<I, S>> {
 
     /**
      * Accepts the input and via side effects modifies

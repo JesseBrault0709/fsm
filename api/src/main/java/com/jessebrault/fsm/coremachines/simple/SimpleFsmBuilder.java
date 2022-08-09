@@ -1,6 +1,6 @@
-package com.jessebrault.fsm.simple;
+package com.jessebrault.fsm.coremachines.simple;
 
-import com.jessebrault.fsm.FsmBuilder;
+import com.jessebrault.fsm.coremachines.builder.CoreFsmBuilder;
 
 import java.util.ServiceLoader;
 
@@ -13,15 +13,20 @@ import java.util.ServiceLoader;
  * @param <I> Fsm input type
  * @param <S> Fsm state type
  */
-public interface SimpleFsmBuilder<I, S>
-        extends FsmBuilder<I, S, I, I, SimpleFsmBuilder<I, S>, SimpleTransitionSetBuilder<I, S>> {
+public interface SimpleFsmBuilder<I, S> extends CoreFsmBuilder<
+        I, S, I, I,
+        SimpleResult<I, S>,
+        SimpleFsm<I, S>,
+        SimpleFsmBuilder<I, S>,
+        SimpleStateConfigurator<I, S>
+        > {
 
-    interface Factory {
+    interface Service {
         <I, S> SimpleFsmBuilder<I, S> getBuilder();
     }
 
     static <I, S> SimpleFsmBuilder<I, S> get() {
-        return ServiceLoader.load(SimpleFsmBuilder.Factory.class)
+        return ServiceLoader.load(Service.class)
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("Cannot find an implementation of SimpleFsmBuilder.Factory."))
                 .getBuilder();

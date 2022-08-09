@@ -1,6 +1,6 @@
-package com.jessebrault.fsm.function;
+package com.jessebrault.fsm.coremachines.function;
 
-import com.jessebrault.fsm.FsmBuilder;
+import com.jessebrault.fsm.coremachines.builder.CoreFsmBuilder;
 
 import java.util.ServiceLoader;
 import java.util.function.Function;
@@ -14,20 +14,22 @@ import java.util.function.Function;
  *
  * @param <I> Fsm input type
  * @param <S> Fsm state type
- * @param <R> Condition function return type
+ * @param <O> Condition function return type
  */
-public interface FunctionFsmBuilder<I, S, R> extends FsmBuilder<
-        I, S, Function<I, R>, R,
-        FunctionFsmBuilder<I, S, R>,
-        FunctionTransitionSetBuilder<I, S, R>
-        >{
+public interface FunctionFsmBuilder<I, S, O> extends CoreFsmBuilder<
+        I, S, Function<I, O>, O,
+        FunctionResult<I, S, O>,
+        FunctionFsm<I, S, O>,
+        FunctionFsmBuilder<I, S, O>,
+        FunctionStateConfigurator<I, S, O>
+        > {
 
-    interface Factory {
+    interface Service {
         <I, S, R> FunctionFsmBuilder<I, S, R> getBuilder();
     }
 
     static <I, S, R> FunctionFsmBuilder<I, S, R> get() {
-        return ServiceLoader.load(FunctionFsmBuilder.Factory.class)
+        return ServiceLoader.load(Service.class)
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("Cannot find an implementation of FunctionFsmBuilder.Factory"))
                 .getBuilder();

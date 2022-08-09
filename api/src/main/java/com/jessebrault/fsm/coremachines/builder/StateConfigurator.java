@@ -1,4 +1,4 @@
-package com.jessebrault.fsm;
+package com.jessebrault.fsm.coremachines.builder;
 
 /**
  * A little-bit complicated interface for building sets of transitions.
@@ -14,9 +14,9 @@ package com.jessebrault.fsm;
  * @param <I> Fsm input type
  * @param <S> Fsm state type
  * @param <C> Fsm condition type ("on")
- * @param <R> Result type of the condition (given to success actions)
+ * @param <O> Result type of the condition (given to success actions)
  */
-public interface TransitionSetBuilder<I, S, C, R> {
+public interface StateConfigurator<I, S, C, O> {
 
     /**
      * Adds a condition to be checked. The exact meaning of "checked" is
@@ -27,7 +27,7 @@ public interface TransitionSetBuilder<I, S, C, R> {
      * @param condition the condition to be checked
      * @return the builder
      */
-    OnBuilder<S, R> on(C condition);
+    OnConfigurator<S, O> on(C condition);
 
     /**
      * Specifies a transition to be executed when none of the provided conditions
@@ -35,8 +35,6 @@ public interface TransitionSetBuilder<I, S, C, R> {
      *
      * @return the builder
      */
-    OnNoMatchBuilder<I, S> onNoMatch();
-
-    TransitionSet<I, S, C, R> build();
+    OnNoMatchConfigurator<I, S> onNoMatch();
 
 }

@@ -2,7 +2,8 @@ package com.jessebrault.fsm.impl.simple;
 
 import com.jessebrault.fsm.greeting.GreetingInputs;
 import com.jessebrault.fsm.greeting.GreetingStates;
-import com.jessebrault.fsm.simple.SimpleFsmBuilder;
+import com.jessebrault.fsm.coremachines.simple.SimpleFsmBuilder;
+import com.jessebrault.fsm.impl.coremachines.simple.SimpleFsmBuilderServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -19,16 +20,14 @@ import static org.mockito.Mockito.verify;
 public class SimpleFsmImplTests {
 
     private static SimpleFsmBuilder<GreetingInputs, GreetingStates> getBuilder() {
-        return new SimpleFsmBuilderImpl<>();
+        return new SimpleFsmBuilderServiceImpl().getBuilder();
     }
 
     @Test
     public void onExecConsumerCalled(@Mock Consumer<GreetingInputs> consumer) {
         final var b = getBuilder();
         b.setInitialState(HELLO);
-        b.whileIn(HELLO, tsb -> {
-            tsb.on(SAY_HELLO).exec(consumer);
-        });
+        b.whileIn(HELLO, tsb -> tsb.on(SAY_HELLO).exec(consumer));
         final var fsm = b.build();
         fsm.accept(SAY_HELLO);
         verify(consumer).accept(SAY_HELLO);

@@ -1,6 +1,6 @@
 package com.jessebrault.fsm.groovy.function
 
-import com.jessebrault.fsm.function.FunctionFsmBuilder
+import com.jessebrault.fsm.coremachines.function.FunctionFsmBuilder
 import com.jessebrault.fsm.greeting.GreetingInputs
 import com.jessebrault.fsm.greeting.GreetingStates
 import org.junit.jupiter.api.Test

@@ -1,8 +1,8 @@
 moduleName=Fsm Groovy Extension
 moduleVersion=0.0.1
 extensionClasses=\
-  com.jessebrault.fsm.groovy.FsmBuilderExtension,\
+  com.jessebrault.fsm.groovy.CoreFsmBuilderExtension,\
   com.jessebrault.fsm.groovy.OnBuilderExtension,\
   com.jessebrault.fsm.groovy.OnNoMatchBuilderExtension,\
-  com.jessebrault.fsm.groovy.predicate.PredicateTransitionSetBuilderExtension,\
-  com.jessebrault.fsm.groovy.function.FunctionTransitionSetBuilderExtension
+  com.jessebrault.fsm.groovy.predicate.PredicateStateConfiguratorExtension,\
+  com.jessebrault.fsm.groovy.function.FunctionStateConfiguratorExtension

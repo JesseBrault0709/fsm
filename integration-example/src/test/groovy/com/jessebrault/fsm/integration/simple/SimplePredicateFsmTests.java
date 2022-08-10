@@ -1,6 +1,6 @@
 package com.jessebrault.fsm.integration.simple;
 
-import com.jessebrault.fsm.greeting.GreetingFsmFactory;
+import com.jessebrault.fsm.greeting.SimpleGreetingFsmFactory;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -12,26 +12,26 @@ import static com.jessebrault.fsm.greeting.GreetingInputs.SAY_HELLO;
 import static com.jessebrault.fsm.greeting.GreetingStates.GOODBYE;
 import static com.jessebrault.fsm.greeting.GreetingStates.HELLO;
 
-public class SimpleFsmTests {
+public class SimplePredicateFsmTests {
 
-    private static Stream<GreetingFsmFactory> getFactories() {
+    private static Stream<SimpleGreetingFsmFactory> getFactories() {
         return Stream.of(new JavaGreetingSimpleFsmFactory(), new GroovyGreetingSimpleFsmFactory());
     }
 
     @ParameterizedTest
     @MethodSource("getFactories")
-    public void dslsOutputEquivalentFsms(GreetingFsmFactory factory) {
+    public void dslsOutputEquivalentFsms(SimpleGreetingFsmFactory factory) {
         final var fsm = factory.get();
 
         // HELLO -> GOODBYE
         final var r0 = fsm.accept(SAY_GOODBYE);
-        Assertions.assertEquals(SAY_GOODBYE, r0);
-        Assertions.assertEquals(GOODBYE, fsm.getCurrentState());
+        Assertions.assertEquals(SAY_GOODBYE, r0.getInput());
+        Assertions.assertEquals(GOODBYE, r0.getState());
 
         // GOODBYE -> HELLO
         final var r1 = fsm.accept(SAY_HELLO);
-        Assertions.assertEquals(SAY_HELLO, r1);
-        Assertions.assertEquals(HELLO, fsm.getCurrentState());
+        Assertions.assertEquals(SAY_HELLO, r1.getInput());
+        Assertions.assertEquals(HELLO, r1.getState());
     }
 
 }

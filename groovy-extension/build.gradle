@@ -1,6 +1,8 @@
 plugins {
     id 'groovy'
     id 'java-library'
+    id 'maven-publish'
+    id 'com.jessebrault.jbarchiva' version '0.0.1-SNAPSHOT'
 }
 
 repositories {
@@ -11,7 +13,7 @@ dependencies {
     implementation project(':api')
 
     // https://mvnrepository.com/artifact/org.apache.groovy/groovy
-    api 'org.apache.groovy:groovy:4.0.3'
+    api 'org.apache.groovy:groovy:4.0.4'
 
     testImplementation project(':greeting-fsm')
 
@@ -32,4 +34,12 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        register 'groovy-extension', MavenPublication, {
+            from components.java
+        }
+    }
 }

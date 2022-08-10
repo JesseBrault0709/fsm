@@ -1,18 +1,19 @@
 package com.jessebrault.fsm.integration.predicate
 
-import com.jessebrault.fsm.FiniteStateMachine
-import com.jessebrault.fsm.greeting.GreetingFsmFactory
+
+import com.jessebrault.fsm.coremachines.predicate.PredicateFsm
+import com.jessebrault.fsm.coremachines.predicate.PredicateFsmBuilder
 import com.jessebrault.fsm.greeting.GreetingInputs
 import com.jessebrault.fsm.greeting.GreetingStates
-import com.jessebrault.fsm.predicate.PredicateFsmBuilder
+import com.jessebrault.fsm.greeting.PredicateGreetingFsmFactory
 
 import static com.jessebrault.fsm.greeting.GreetingStates.GOODBYE
 import static com.jessebrault.fsm.greeting.GreetingStates.HELLO
 
-class GroovyGreetingPredicateFsmFactory implements GreetingFsmFactory {
+class GroovyGreetingPredicateFsmFactory implements PredicateGreetingFsmFactory {
 
     @Override
-    FiniteStateMachine<GreetingInputs, GreetingStates, GreetingInputs> get() {
+    PredicateFsm<GreetingInputs, GreetingStates> get() {
         PredicateFsmBuilder.<GreetingInputs, GreetingStates>get().with {
             initialState = HELLO
             whileIn(HELLO) {

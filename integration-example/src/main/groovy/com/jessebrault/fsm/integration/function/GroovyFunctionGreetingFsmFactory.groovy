@@ -1,17 +1,20 @@
 package com.jessebrault.fsm.integration.function
 
-import com.jessebrault.fsm.FiniteStateMachine
-import com.jessebrault.fsm.function.FunctionFsmBuilder
+import com.jessebrault.fsm.coremachines.function.FunctionFsm
+import com.jessebrault.fsm.coremachines.function.FunctionFsmBuilder
+import com.jessebrault.fsm.greeting.FunctionGreetingFsmFactory
 import com.jessebrault.fsm.greeting.GreetingInputs
 import com.jessebrault.fsm.greeting.GreetingStates
 
-import static com.jessebrault.fsm.greeting.GreetingInputs.*;
-import static com.jessebrault.fsm.greeting.GreetingStates.*;
+import static com.jessebrault.fsm.greeting.GreetingInputs.SAY_GOODBYE
+import static com.jessebrault.fsm.greeting.GreetingInputs.SAY_HELLO
+import static com.jessebrault.fsm.greeting.GreetingStates.GOODBYE
+import static com.jessebrault.fsm.greeting.GreetingStates.HELLO
 
-class GroovyFunctionGreetingFsmFactory implements FunctionGreetingFsmFactory {
+class GroovyFunctionGreetingFsmFactory implements FunctionGreetingFsmFactory<Integer> {
 
     @Override
-    FiniteStateMachine<GreetingInputs, GreetingStates, Integer> get() {
+    FunctionFsm<GreetingInputs, GreetingStates, Integer> get() {
         FunctionFsmBuilder.<GreetingInputs, GreetingStates, Integer>get().with {
             initialState = HELLO
             whileIn(HELLO) {

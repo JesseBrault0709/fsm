@@ -1,18 +1,20 @@
 package com.jessebrault.fsm.integration.simple;
 
-import com.jessebrault.fsm.FiniteStateMachine;
-import com.jessebrault.fsm.greeting.GreetingFsmFactory;
+import com.jessebrault.fsm.coremachines.simple.SimpleFsm;
+import com.jessebrault.fsm.coremachines.simple.SimpleFsmBuilder;
 import com.jessebrault.fsm.greeting.GreetingInputs;
 import com.jessebrault.fsm.greeting.GreetingStates;
-import com.jessebrault.fsm.simple.SimpleFsmBuilder;
+import com.jessebrault.fsm.greeting.SimpleGreetingFsmFactory;
 
-import static com.jessebrault.fsm.greeting.GreetingInputs.*;
-import static com.jessebrault.fsm.greeting.GreetingStates.*;
+import static com.jessebrault.fsm.greeting.GreetingInputs.SAY_GOODBYE;
+import static com.jessebrault.fsm.greeting.GreetingInputs.SAY_HELLO;
+import static com.jessebrault.fsm.greeting.GreetingStates.GOODBYE;
+import static com.jessebrault.fsm.greeting.GreetingStates.HELLO;
 
-public class JavaGreetingSimpleFsmFactory implements GreetingFsmFactory {
+public class JavaGreetingSimpleFsmFactory implements SimpleGreetingFsmFactory {
 
     @Override
-    public FiniteStateMachine<GreetingInputs, GreetingStates, GreetingInputs> get() {
+    public SimpleFsm<GreetingInputs, GreetingStates> get() {
         return SimpleFsmBuilder.<GreetingInputs, GreetingStates>get()
                 .setInitialState(HELLO)
                 .whileIn(HELLO, tsb -> tsb.on(SAY_GOODBYE).shiftTo(GOODBYE))

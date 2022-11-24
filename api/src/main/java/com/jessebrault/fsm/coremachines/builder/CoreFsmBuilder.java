@@ -3,21 +3,23 @@ package com.jessebrault.fsm.coremachines.builder;
 import com.jessebrault.fsm.FiniteStateMachine;
 import com.jessebrault.fsm.FsmBuilder;
 import com.jessebrault.fsm.Result;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Consumer;
 
 /**
- * The builder interface for building a Finite State Machine.
- * All provided builders in this library extend this interface.
- * The input type is what is given to the fsm during use, and the state type
- * represents the various states that the machine may be in.
- * States may either be of any type, but Strings, or better yet,
- * Enums, are recommended. See also the TransitionSetBuilder.
+ * <p>The builder interface for building a Finite State Machine. All provided
+ * builders in this library extend this interface.</p>
  *
- * @param <I> Input type
- * @param <S> State type
- * @param <C> Condition type
- * @param <O> Result type
+ * @param <I>  Input type
+ * @param <S>  State type
+ * @param <C>  Condition type
+ * @param <O>  Output type
+ * @param <R>  Result type
+ * @param <M>  Machine type
+ * @param <B>  Builder type
+ * @param <SC> StateConfigurator type
  */
 public interface CoreFsmBuilder<
         I, S, C, O,
@@ -27,9 +29,30 @@ public interface CoreFsmBuilder<
         SC extends StateConfigurator<I, S, C, O>
         > extends FsmBuilder<I, S, R, M> {
 
-    S getInitialState();
-    B setInitialState(S state);
+    /**
+     * Returns the initial currently set initial state for the machine to be
+     * built, possibly null.
+     *
+     * @return the initial state
+     */
+    @Nullable S getInitialState();
 
-    B whileIn(S state, Consumer<SC> configureState);
+    /**
+     * Sets the initial state of the machine to be built.
+     *
+     * @param state the initial state, not null
+     * @return this builder
+     */
+    B setInitialState(@NotNull S state);
+
+    /**
+     * <p>A method for describing the grammar of a given state. Should be called
+     * once per configured state.</p>
+     *
+     * @param state          the state to configure, not null
+     * @param configureState a Consumer of a StateConfigurator, not null
+     * @return this builder
+     */
+    B whileIn(@NotNull S state, @NotNull Consumer<SC> configureState);
 
 }

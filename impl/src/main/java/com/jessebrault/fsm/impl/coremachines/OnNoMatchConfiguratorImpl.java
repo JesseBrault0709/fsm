@@ -1,6 +1,7 @@
 package com.jessebrault.fsm.impl.coremachines;
 
 import com.jessebrault.fsm.coremachines.builder.OnNoMatchConfigurator;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 import java.util.LinkedList;
@@ -21,13 +22,13 @@ public final class OnNoMatchConfiguratorImpl<I, S> implements OnNoMatchConfigura
     }
     
     @Override
-    public OnNoMatchConfigurator<I, S> shiftTo(S state) {
+    public OnNoMatchConfigurator<I, S> shiftTo(@NotNull S state) {
         this.shiftTo = state;
         return this;
     }
 
     @Override
-    public OnNoMatchConfigurator<I, S> exec(Consumer<I> action) {
+    public OnNoMatchConfigurator<I, S> exec(@NotNull Consumer<I> action) {
         Objects.requireNonNull(action, "exec: action must not be null");
         this.actions.add(action);
         return this;

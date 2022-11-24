@@ -5,6 +5,7 @@ import com.jessebrault.fsm.coremachines.simple.SimpleFsmBuilder;
 import com.jessebrault.fsm.coremachines.simple.SimpleStateConfigurator;
 import com.jessebrault.fsm.impl.coremachines.FsmBuilderHelper;
 import com.jessebrault.fsm.impl.coremachines.TransitionSet;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,14 +23,14 @@ final class SimpleFsmBuilderImpl<I, S> implements SimpleFsmBuilder<I, S> {
     }
 
     @Override
-    public SimpleFsmBuilder<I, S> setInitialState(S state) {
+    public SimpleFsmBuilder<I, S> setInitialState(@NotNull S state) {
         this.helper.checkSetInitialState(state);
         this.initialState = state;
         return this;
     }
 
     @Override
-    public SimpleFsmBuilder<I, S> whileIn(S state, Consumer<SimpleStateConfigurator<I, S>> configureState) {
+    public SimpleFsmBuilder<I, S> whileIn(@NotNull S state, @NotNull Consumer<SimpleStateConfigurator<I, S>> configureState) {
         this.helper.checkWhileIn(state, configureState);
         final var sc = new SimpleStateConfiguratorImpl<I, S>();
         configureState.accept(sc);

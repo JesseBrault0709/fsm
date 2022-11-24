@@ -5,6 +5,7 @@ import com.jessebrault.fsm.coremachines.predicate.PredicateFsmBuilder;
 import com.jessebrault.fsm.coremachines.predicate.PredicateStateConfigurator;
 import com.jessebrault.fsm.impl.coremachines.FsmBuilderHelper;
 import com.jessebrault.fsm.impl.coremachines.TransitionSet;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,14 +25,14 @@ final class PredicateFsmBuilderImpl<I, S> implements PredicateFsmBuilder<I, S> {
     }
 
     @Override
-    public PredicateFsmBuilder<I, S> setInitialState(S state) {
+    public PredicateFsmBuilder<I, S> setInitialState(@NotNull S state) {
         this.helper.checkSetInitialState(state);
         this.initialState = state;
         return this;
     }
 
     @Override
-    public PredicateFsmBuilder<I, S> whileIn(S state, Consumer<PredicateStateConfigurator<I, S>> configureState) {
+    public PredicateFsmBuilder<I, S> whileIn(@NotNull S state, @NotNull Consumer<PredicateStateConfigurator<I, S>> configureState) {
         this.helper.checkWhileIn(state, configureState);
         final var sc = new PredicateStateConfiguratorImpl<I, S>();
         configureState.accept(sc);

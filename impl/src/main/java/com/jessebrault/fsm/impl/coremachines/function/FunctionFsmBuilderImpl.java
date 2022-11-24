@@ -5,6 +5,7 @@ import com.jessebrault.fsm.coremachines.function.FunctionFsmBuilder;
 import com.jessebrault.fsm.coremachines.function.FunctionStateConfigurator;
 import com.jessebrault.fsm.impl.coremachines.FsmBuilderHelper;
 import com.jessebrault.fsm.impl.coremachines.TransitionSet;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,14 +25,14 @@ final class FunctionFsmBuilderImpl<I, S, O> implements FunctionFsmBuilder<I, S, 
     }
 
     @Override
-    public FunctionFsmBuilder<I, S, O> setInitialState(S state) {
+    public FunctionFsmBuilder<I, S, O> setInitialState(@NotNull S state) {
         this.helper.checkSetInitialState(state);
         this.initialState = state;
         return this;
     }
 
     @Override
-    public FunctionFsmBuilder<I, S, O> whileIn(S state, Consumer<FunctionStateConfigurator<I, S, O>> configureState) {
+    public FunctionFsmBuilder<I, S, O> whileIn(@NotNull S state, @NotNull Consumer<FunctionStateConfigurator<I, S, O>> configureState) {
         this.helper.checkWhileIn(state, configureState);
         final var sc = new FunctionStateConfiguratorImpl<I, S, O>();
         configureState.accept(sc);

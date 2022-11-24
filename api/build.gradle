@@ -5,6 +5,18 @@ plugins {
     id 'com.jessebrault.jbarchiva' version '0.0.1-SNAPSHOT'
 }
 
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    /**
+     * JetBrains Annotations
+     */
+    // https://mvnrepository.com/artifact/org.jetbrains/annotations
+    compileOnly 'org.jetbrains:annotations:23.0.0'
+}
+
 publishing {
     publications {
         register 'api', MavenPublication, {

@@ -12,6 +12,12 @@ repositories {
 dependencies {
     implementation project(':api')
 
+    /**
+     * JetBrains Annotations
+     */
+    // https://mvnrepository.com/artifact/org.jetbrains/annotations
+    compileOnly 'org.jetbrains:annotations:23.0.0'
+
     // https://mvnrepository.com/artifact/com.google.auto.service/auto-service-annotations
     implementation 'com.google.auto.service:auto-service-annotations:1.0.1'
 

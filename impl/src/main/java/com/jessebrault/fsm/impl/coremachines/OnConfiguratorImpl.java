@@ -1,6 +1,7 @@
 package com.jessebrault.fsm.impl.coremachines;
 
 import com.jessebrault.fsm.coremachines.builder.OnConfigurator;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 import java.util.LinkedList;
@@ -21,13 +22,13 @@ public final class OnConfiguratorImpl<S, O> implements OnConfigurator<S, O> {
     }
 
     @Override
-    public OnConfigurator<S, O> shiftTo(S state) {
+    public OnConfigurator<S, O> shiftTo(@NotNull S state) {
         this.shiftTo = state;
         return this;
     }
 
     @Override
-    public OnConfigurator<S, O> exec(Consumer<O> action) {
+    public OnConfigurator<S, O> exec(@NotNull Consumer<O> action) {
         Objects.requireNonNull(action, "exec: action must not be null");
         this.actions.add(action);
         return this;

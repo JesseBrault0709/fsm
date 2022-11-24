@@ -1,27 +1,28 @@
 package com.jessebrault.fsm;
 
 /**
- * <p>A Finite State Machine that accepts an input
- * and possibly transitions to a new state based upon
- * that input.</p>
+ * <p>A Finite State Machine that accepts an input and possibly transitions to
+ * a new state based upon that input.</p>
  *
- * <p>If built using one of the provided builders, may also
- * cause external side effects based on the given inputs.</p>
+ * <p>Certain types of machines may also cause external side effects based on
+ * the given inputs.</p>
  *
- * @param <I> Input type
- * @param <S> State type
- * @param <R> Result type
+ * @param <I> Input: the type of input given to the
+ *            {@link #accept(I input) accept} method.
+ * @param <S> State: the type of the states of this machine. Strings, or better
+ *            yet, Enums are recommended.
+ * @param <R> Result: the result returned by the {@link #accept(I input) accept}
+ *            method; extends {@link Result}
  */
 public interface FiniteStateMachine<I, S, R extends Result<I, S>> {
 
     /**
-     * Accepts the input and via side effects modifies
-     * the internal state of the machine to the next state.
-     * If built using one of the provided builders, may also
-     * cause external side effects based on the given inputs.
+     * <p>Accepts the given input; depending on how the particular machine
+     * handles input, possibly may transition to a new state. Returns a Result
+     * object describing the operation.</p>
      *
      * @param input the input
-     * @return the next state (possibly the same as before)
+     * @return the Result, extending {@link Result}
      */
     R accept(I input);
 

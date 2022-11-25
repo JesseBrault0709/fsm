@@ -5,7 +5,7 @@ import groovy.lang.Closure;
 import groovy.transform.stc.ClosureParams;
 import groovy.transform.stc.FromString;
 
-public class OnBuilderExtension {
+public final class OnBuilderExtension {
 
     public static <S, R> OnConfigurator<S, R> exec(
             OnConfigurator<S, R> self,
@@ -16,6 +16,6 @@ public class OnBuilderExtension {
         return self;
     }
 
-    // private OnBuilderExtension() {}
+    private OnBuilderExtension() {}
 
 }

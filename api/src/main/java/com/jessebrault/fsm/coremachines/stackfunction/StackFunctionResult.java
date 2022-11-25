@@ -1,9 +1,15 @@
 package com.jessebrault.fsm.coremachines.stackfunction;
 
-import com.jessebrault.fsm.coremachines.function.FunctionResult;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.Deque;
+import java.util.function.Function;
 
-public interface StackFunctionResult<I, S, O>  extends FunctionResult<I, S, O> {
-    Deque<S> getStateStack();
+public interface StackFunctionResult<I, O> {
+
+    boolean matched();
+
+    @Nullable Function<I, O> getMatchedFunction();
+
+    @Nullable O getOutput();
+
 }

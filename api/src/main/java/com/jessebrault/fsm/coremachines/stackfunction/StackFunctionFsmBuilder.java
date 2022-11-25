@@ -1,15 +1,19 @@
 package com.jessebrault.fsm.coremachines.stackfunction;
 
-import com.jessebrault.fsm.coremachines.builder.CoreFsmBuilder;
+import com.jessebrault.fsm.FsmBuilder;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.function.Function;
+import java.util.function.Consumer;
 
-public interface StackFunctionFsmBuilder<I, S, O> extends CoreFsmBuilder<
-        I, S, Function<I, O>, O,
-        StackFunctionResult<I, S, O>,
+public interface StackFunctionFsmBuilder<I, S, O> extends FsmBuilder<
+        I, S, StackFunctionResult<I, O>,
         StackFunctionFsm<I, S, O>,
-        StackFunctionFsmBuilder<I, S, O>,
-        StackFunctionStateConfigurator<I, S, O>,
-        StackFunctionOnConfigurator<S, O>,
-        StackFunctionOnNoMatchConfigurator<I, S>
-        > {}
+        StackFunctionFsmBuilder<I, S, O>
+        > {
+
+    StackFunctionFsmBuilder<I, S, O> whileIn(
+            @NotNull S state,
+            @NotNull Consumer<StackFunctionStateConfigurator<I, S, O>> stateConfiguratorConsumer
+    );
+    
+}

@@ -1,15 +1,17 @@
 package com.jessebrault.fsm.coremachines.stackfunction;
 
-import com.jessebrault.fsm.coremachines.builder.OnNoMatchConfigurator;
 import org.jetbrains.annotations.NotNull;
 
-public interface StackFunctionOnNoMatchConfigurator<I, S>
-        extends OnNoMatchConfigurator<I, S, StackFunctionOnNoMatchConfigurator<I, S>> {
+import java.util.function.Consumer;
+
+public interface StackFunctionOnNoMatchConfigurator<I, S> {
+
+    StackFunctionOnNoMatchConfigurator<I, S> shiftTo(@NotNull S state);
 
     StackFunctionOnNoMatchConfigurator<I, S> pushState(@NotNull S state);
 
     StackFunctionOnNoMatchConfigurator<I, S> popState();
 
-    StackFunctionOnNoMatchConfigurator<I, S> popStates(int numberOfStates);
-
+    StackFunctionOnNoMatchConfigurator<I, S> exec(Consumer<I> inputConsumer);
+    
 }

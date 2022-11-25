@@ -1,12 +1,13 @@
 package com.jessebrault.fsm.coremachines.stackfunction;
 
-import com.jessebrault.fsm.coremachines.builder.StateConfigurator;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Function;
 
-public interface StackFunctionStateConfigurator<I, S, O>
-        extends StateConfigurator<
-                I, S, Function<I, O>, O,
-                StackFunctionOnConfigurator<S, O>,
-                StackFunctionOnNoMatchConfigurator<I, S>
-        > {}
+public interface StackFunctionStateConfigurator<I, S, O> {
+
+    StackFunctionOnConfigurator<S, O> on(@NotNull Function<I, O> ioFunction);
+
+    StackFunctionOnNoMatchConfigurator<I, S> onNoMatch();
+    
+}

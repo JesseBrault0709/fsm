@@ -9,9 +9,19 @@ package com.jessebrault.fsm;
  *
  * @param <I> The machine Input type
  * @param <S> The machine State type
- * @param <R> The machine Result type, extending {@link Result}
+ * @param <R> The machine Result type
  * @param <M> The Machine type, extending {@link FiniteStateMachine}
  */
-public interface FsmBuilder<I, S, R extends Result<I, S>, M extends FiniteStateMachine<I, S, R>> {
+public interface FsmBuilder<
+        I, S, R,
+        M extends FiniteStateMachine<I, S, R>,
+        B extends FsmBuilder<I, S, R, M, B>
+        > {
+
+    B setInitialState(S initialState);
+
+    S getInitialState();
+
     M build();
+
 }

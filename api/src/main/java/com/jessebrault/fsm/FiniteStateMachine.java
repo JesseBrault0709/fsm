@@ -9,12 +9,10 @@ package com.jessebrault.fsm;
  *
  * @param <I> Input: the type of input given to the
  *            {@link #accept(I input) accept} method.
- * @param <S> State: the type of the states of this machine. Strings, or better
- *            yet, Enums are recommended.
  * @param <R> Result: the result returned by the {@link #accept(I input) accept}
- *            method; extends {@link Result}
+ *            method.
  */
-public interface FiniteStateMachine<I, S, R extends Result<I, S>> {
+public interface FiniteStateMachine<I, S, R> {
 
     /**
      * <p>Accepts the given input; depending on how the particular machine
@@ -22,8 +20,10 @@ public interface FiniteStateMachine<I, S, R extends Result<I, S>> {
      * object describing the operation.</p>
      *
      * @param input the input
-     * @return the Result, extending {@link Result}
+     * @return the Result
      */
     R accept(I input);
+
+    S getCurrentState();
 
 }

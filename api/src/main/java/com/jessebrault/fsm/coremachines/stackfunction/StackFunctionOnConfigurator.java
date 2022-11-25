@@ -1,14 +1,17 @@
 package com.jessebrault.fsm.coremachines.stackfunction;
 
-import com.jessebrault.fsm.coremachines.builder.OnConfigurator;
 import org.jetbrains.annotations.NotNull;
 
-public interface StackFunctionOnConfigurator<S, O> extends OnConfigurator<S, O, StackFunctionOnConfigurator<S, O>> {
+import java.util.function.Consumer;
+
+public interface StackFunctionOnConfigurator<S, O> {
+
+    StackFunctionOnConfigurator<S, O> shiftTo(@NotNull S state);
 
     StackFunctionOnConfigurator<S, O> pushState(@NotNull S state);
 
     StackFunctionOnConfigurator<S, O> popState();
-
-    StackFunctionOnConfigurator<S, O> popStates(int numberOfStates);
+    
+    StackFunctionOnConfigurator<S, O> exec(@NotNull Consumer<O> outputConsumer);
 
 }

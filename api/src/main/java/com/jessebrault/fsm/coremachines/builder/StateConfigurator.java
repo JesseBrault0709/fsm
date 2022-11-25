@@ -9,6 +9,8 @@ package com.jessebrault.fsm.coremachines.builder;
  * @param <C> Fsm condition type ("on"); see {@link #on(C condition) on()}
  *            method
  * @param <O> Result type of the condition (given to success actions)
+ * @param <ON> OnMatchConfigurator type
+ * @param <ONM> OnNoMatchConfigurator type
  */
 public interface StateConfigurator<
         I, S, C, O,

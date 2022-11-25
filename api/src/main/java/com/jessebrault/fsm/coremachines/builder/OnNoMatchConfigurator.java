@@ -8,7 +8,7 @@ import java.util.function.Consumer;
  * @param <I> Input type
  * @param <S> State type
  */
-public interface OnNoMatchConfigurator<I, S> {
+public interface OnNoMatchConfigurator<I, S, ONM extends OnNoMatchConfigurator<I, S, ONM>> {
 
     /**
      * When no conditions are met, shift to the given state.
@@ -16,7 +16,7 @@ public interface OnNoMatchConfigurator<I, S> {
      * @param state the state to which the fsm will shift
      * @return this configurator
      */
-    OnNoMatchConfigurator<I, S> shiftTo(@NotNull S state);
+    ONM shiftTo(@NotNull S state);
 
     /**
      * When no conditions are met, perform the given action receiving the
@@ -25,6 +25,6 @@ public interface OnNoMatchConfigurator<I, S> {
      * @param action the action to be performed
      * @return this configurator
      */
-    OnNoMatchConfigurator<I, S> exec(@NotNull Consumer<I> action);
+    ONM exec(@NotNull Consumer<I> action);
 
 }

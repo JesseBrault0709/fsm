@@ -12,8 +12,8 @@ package com.jessebrault.fsm.coremachines.builder;
  */
 public interface StateConfigurator<
         I, S, C, O,
-        OC extends OnConfigurator<S, O>,
-        ONM extends OnNoMatchConfigurator<I, S>
+        ON extends OnConfigurator<S, O, ON>,
+        ONM extends OnNoMatchConfigurator<I, S, ONM>
         > {
 
     /**
@@ -29,7 +29,7 @@ public interface StateConfigurator<
      * @return an {@link OnConfigurator} to configure the grammar for this
      * condition
      */
-    OC on(C condition);
+    ON on(C condition);
 
     /**
      * In the event that no processed conditions are met, the Fsm will check if

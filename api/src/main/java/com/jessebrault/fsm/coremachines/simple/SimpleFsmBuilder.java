@@ -1,8 +1,6 @@
 package com.jessebrault.fsm.coremachines.simple;
 
 import com.jessebrault.fsm.coremachines.builder.CoreFsmBuilder;
-import com.jessebrault.fsm.coremachines.builder.OnConfigurator;
-import com.jessebrault.fsm.coremachines.builder.OnNoMatchConfigurator;
 
 import java.util.ServiceLoader;
 
@@ -21,8 +19,8 @@ public interface SimpleFsmBuilder<I, S> extends CoreFsmBuilder<
         SimpleFsm<I, S>,
         SimpleFsmBuilder<I, S>,
         SimpleStateConfigurator<I, S>,
-        OnConfigurator<S, I>,
-        OnNoMatchConfigurator<I, S>
+        SimpleOnConfigurator<I, S>,
+        SimpleOnNoMatchConfigurator<I, S>
         > {
 
     interface Service {

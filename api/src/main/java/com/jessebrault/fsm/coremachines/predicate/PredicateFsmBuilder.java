@@ -1,6 +1,8 @@
 package com.jessebrault.fsm.coremachines.predicate;
 
 import com.jessebrault.fsm.coremachines.builder.CoreFsmBuilder;
+import com.jessebrault.fsm.coremachines.builder.OnConfigurator;
+import com.jessebrault.fsm.coremachines.builder.OnNoMatchConfigurator;
 
 import java.util.ServiceLoader;
 import java.util.function.Predicate;
@@ -20,7 +22,9 @@ public interface PredicateFsmBuilder<I, S> extends CoreFsmBuilder<
         PredicateResult<I, S>,
         PredicateFsm<I, S>,
         PredicateFsmBuilder<I, S>,
-        PredicateStateConfigurator<I, S>
+        PredicateStateConfigurator<I, S>,
+        OnConfigurator<S, I>,
+        OnNoMatchConfigurator<I, S>
         > {
 
     interface Service {

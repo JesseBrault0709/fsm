@@ -25,8 +25,10 @@ public interface CoreFsmBuilder<
         I, S, C, O,
         R extends Result<I, S>,
         M extends FiniteStateMachine<I, S, R>,
-        B extends CoreFsmBuilder<I, S, C, O, R, M, B, SC>,
-        SC extends StateConfigurator<I, S, C, O>
+        B extends CoreFsmBuilder<I, S, C, O, R, M, B, SC, ON, ONM>,
+        SC extends StateConfigurator<I, S, C, O, ON, ONM>,
+        ON extends OnConfigurator<S, O>,
+        ONM extends OnNoMatchConfigurator<I, S>
         > extends FsmBuilder<I, S, R, M> {
 
     /**

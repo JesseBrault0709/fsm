@@ -10,7 +10,11 @@ package com.jessebrault.fsm.coremachines.builder;
  *            method
  * @param <O> Result type of the condition (given to success actions)
  */
-public interface StateConfigurator<I, S, C, O> {
+public interface StateConfigurator<
+        I, S, C, O,
+        OC extends OnConfigurator<S, O>,
+        ONM extends OnNoMatchConfigurator<I, S>
+        > {
 
     /**
      * Receives a "condition" to be processed by the Fsm and met; the exact
@@ -25,7 +29,7 @@ public interface StateConfigurator<I, S, C, O> {
      * @return an {@link OnConfigurator} to configure the grammar for this
      * condition
      */
-    OnConfigurator<S, O> on(C condition);
+    OC on(C condition);
 
     /**
      * In the event that no processed conditions are met, the Fsm will check if
@@ -35,6 +39,6 @@ public interface StateConfigurator<I, S, C, O> {
      * @return an {@link OnNoMatchConfigurator} to configure the grammar for
      * when no conditions met
      */
-    OnNoMatchConfigurator<I, S> onNoMatch();
+    ONM onNoMatch();
 
 }

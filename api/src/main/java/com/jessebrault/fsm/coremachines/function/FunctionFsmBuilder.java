@@ -1,6 +1,8 @@
 package com.jessebrault.fsm.coremachines.function;
 
 import com.jessebrault.fsm.coremachines.builder.CoreFsmBuilder;
+import com.jessebrault.fsm.coremachines.builder.OnConfigurator;
+import com.jessebrault.fsm.coremachines.builder.OnNoMatchConfigurator;
 
 import java.util.ServiceLoader;
 import java.util.function.Function;
@@ -21,7 +23,9 @@ public interface FunctionFsmBuilder<I, S, O> extends CoreFsmBuilder<
         FunctionResult<I, S, O>,
         FunctionFsm<I, S, O>,
         FunctionFsmBuilder<I, S, O>,
-        FunctionStateConfigurator<I, S, O>
+        FunctionStateConfigurator<I, S, O>,
+        OnConfigurator<S, O>,
+        OnNoMatchConfigurator<I, S>
         > {
 
     interface Service {

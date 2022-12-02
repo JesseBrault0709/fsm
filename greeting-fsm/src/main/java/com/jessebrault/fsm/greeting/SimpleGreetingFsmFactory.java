@@ -1,6 +1,6 @@
 package com.jessebrault.fsm.greeting;
 
-import com.jessebrault.fsm.coremachines.simple.SimpleFsm;
+import com.jessebrault.fsm.simple.SimpleFsm;
 
 public interface SimpleGreetingFsmFactory {
     SimpleFsm<GreetingInputs, GreetingStates> get();

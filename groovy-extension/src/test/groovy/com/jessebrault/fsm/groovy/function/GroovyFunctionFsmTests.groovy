@@ -1,6 +1,6 @@
 package com.jessebrault.fsm.groovy.function
 
-import com.jessebrault.fsm.coremachines.function.FunctionFsmBuilder
+import com.jessebrault.fsm.function.FunctionFsmBuilderImpl
 import com.jessebrault.fsm.greeting.GreetingInputs
 import com.jessebrault.fsm.greeting.GreetingStates
 import org.junit.jupiter.api.Test
@@ -18,7 +18,7 @@ class GroovyFunctionFsmTests {
     @Test
     void onExecClosureCalled() {
         def consumer = mock Consumer
-        def fsm = FunctionFsmBuilder.<GreetingInputs, GreetingStates, Integer>get().with {
+        def fsm = new FunctionFsmBuilderImpl<GreetingInputs, GreetingStates, Integer>().with {
             initialState = HELLO
             whileIn(HELLO) {
                 on { it == SAY_GOODBYE ? it.name().length() : null } shiftTo GOODBYE exec {
@@ -27,7 +27,7 @@ class GroovyFunctionFsmTests {
             }
             build()
         }
-        fsm.accept SAY_GOODBYE
+        fsm.apply SAY_GOODBYE
         verify consumer accept(SAY_GOODBYE.name().length())
     }
 

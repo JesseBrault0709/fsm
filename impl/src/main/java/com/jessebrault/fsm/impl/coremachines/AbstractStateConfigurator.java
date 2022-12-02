@@ -1,27 +1,37 @@
 package com.jessebrault.fsm.impl.coremachines;
 
-import com.jessebrault.fsm.coremachines.builder.OnConfigurator;
 import com.jessebrault.fsm.coremachines.builder.OnNoMatchConfigurator;
 import com.jessebrault.fsm.coremachines.builder.StateConfigurator;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.Supplier;
 
-public abstract class AbstractStateConfigurator<I, S, C, O> implements StateConfigurator<I, S, C, O> {
+public abstract class AbstractStateConfigurator<
+        I, S, C, O,
+        AON extends AbstractOnConfigurator<S, O, AON>,
+        AONM extends AbstractOnNoMatchConfigurator<I, S, AONM>
+        > implements StateConfigurator<I, S, C, O, AON, AONM> {
 
+    private final Supplier<AON> onConfiguratorSupplier;
+    private final AONM onNoMatchConfigurator;
     private final Set<Transition<S, C, O>> transitions = new HashSet<>();
 
-    private C curOn;
-    private OnConfiguratorImpl<S, O> curOnConfigurator;
-    private final OnNoMatchConfiguratorImpl<I, S> onNoMatchConfigurator = new OnNoMatchConfiguratorImpl<>();
+    private C curOnCondition;
+    private AON curOnConfigurator;
+
+    public AbstractStateConfigurator(Supplier<AON> onConfiguratorSupplier, AONM onNoMatchConfigurator) {
+        this.onConfiguratorSupplier = onConfiguratorSupplier;
+        this.onNoMatchConfigurator = onNoMatchConfigurator;
+    }
 
     private void flush() {
-        if (this.curOn != null) {
+        if (this.curOnCondition != null) {
             transitions.add(new Transition<>(
-                    this.curOn, this.curOnConfigurator.getShiftTo(), this.curOnConfigurator.getActions()
+                    this.curOnCondition, this.curOnConfigurator.getShiftTo(), this.curOnConfigurator.getActions()
             ));
         }
-        this.curOn = null;
+        this.curOnCondition = null;
         this.curOnConfigurator = null;
     }
 
@@ -33,15 +43,15 @@ public abstract class AbstractStateConfigurator<I, S, C, O> implements StateConf
     }
 
     @Override
-    public final OnConfigurator<S, O> on(C condition) {
+    public final AON on(C condition) {
         this.flush();
-        this.curOn = condition;
-        this.curOnConfigurator = new OnConfiguratorImpl<>();
+        this.curOnCondition = condition;
+        this.curOnConfigurator = this.onConfiguratorSupplier.get();
         return this.curOnConfigurator;
     }
 
     @Override
-    public final OnNoMatchConfigurator<I, S> onNoMatch() {
+    public final AONM onNoMatch() {
         return this.onNoMatchConfigurator;
     }
 

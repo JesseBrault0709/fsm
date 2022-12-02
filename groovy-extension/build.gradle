@@ -10,14 +10,12 @@ repositories {
 }
 
 dependencies {
-    implementation project(':api')
+    implementation project(':lib')
 
     // https://mvnrepository.com/artifact/org.apache.groovy/groovy
     api 'org.apache.groovy:groovy:4.0.4'
 
     testImplementation project(':greeting-fsm')
-
-    testRuntimeOnly project(':impl')
 
     // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'

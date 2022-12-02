@@ -24,7 +24,7 @@ final class SimpleFsmImpl<I, S> implements SimpleFsm<I, S> {
     }
 
     @Override
-    public SimpleResult<I, S> accept(I input) {
+    public SimpleResult<I, S> apply(I input) {
         final var transitionSet = this.grammar.get(this.curState);
         this.helper.checkTransitionSet(transitionSet, this.curState);
         for (final var transition : transitionSet.transitions()) {

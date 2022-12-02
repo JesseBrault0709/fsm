@@ -24,14 +24,14 @@ public class PredicateGreetingFsmTests {
         final var fsm = factory.get();
 
         // HELLO -> GOODBYE
-        final var r0 = fsm.accept(SAY_GOODBYE);
-        assertEquals(SAY_GOODBYE, r0.getInput());
-        assertEquals(GOODBYE, r0.getState());
+        final var r0 = fsm.apply(SAY_GOODBYE);
+        assertEquals(SAY_GOODBYE, r0); // TODO: fix @Nullable
+        assertEquals(GOODBYE, fsm.getCurrentState());
 
         // GOODBYE -> HELLO
-        final var r1 = fsm.accept(SAY_HELLO);
-        assertEquals(SAY_HELLO, r1.getInput());
-        assertEquals(HELLO, r1.getState());
+        final var r1 = fsm.apply(SAY_HELLO);
+        assertEquals(SAY_HELLO, r1);
+        assertEquals(HELLO, fsm.getCurrentState());
     }
     
 }

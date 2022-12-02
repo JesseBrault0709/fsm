@@ -1,10 +1,10 @@
 package com.jessebrault.fsm.integration.simple
 
-import com.jessebrault.fsm.coremachines.simple.SimpleFsm
-import com.jessebrault.fsm.coremachines.simple.SimpleFsmBuilder
 import com.jessebrault.fsm.greeting.GreetingInputs
 import com.jessebrault.fsm.greeting.GreetingStates
 import com.jessebrault.fsm.greeting.SimpleGreetingFsmFactory
+import com.jessebrault.fsm.simple.SimpleFsm
+import com.jessebrault.fsm.simple.SimpleFsmBuilderImpl
 
 import static com.jessebrault.fsm.greeting.GreetingInputs.SAY_GOODBYE
 import static com.jessebrault.fsm.greeting.GreetingInputs.SAY_HELLO
@@ -15,7 +15,7 @@ class GroovyGreetingSimpleFsmFactory implements SimpleGreetingFsmFactory {
 
     @Override
     SimpleFsm<GreetingInputs, GreetingStates> get() {
-        SimpleFsmBuilder.<GreetingInputs, GreetingStates>get().with {
+        new SimpleFsmBuilderImpl<GreetingInputs, GreetingStates>().with {
             initialState = HELLO
             whileIn(HELLO) {
                 on SAY_GOODBYE shiftTo GOODBYE

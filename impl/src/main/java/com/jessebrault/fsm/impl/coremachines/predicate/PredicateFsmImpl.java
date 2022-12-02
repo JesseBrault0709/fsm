@@ -24,7 +24,7 @@ final class PredicateFsmImpl<I, S> implements PredicateFsm<I, S> {
     }
 
     @Override
-    public PredicateResult<I, S> accept(I input) {
+    public PredicateResult<I, S> apply(I input) {
         final var transitionSet = this.grammar.get(this.curState);
         this.helper.checkTransitionSet(transitionSet, this.curState);
         for (final var transition : transitionSet.transitions()) {

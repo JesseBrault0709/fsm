@@ -29,7 +29,7 @@ public class ResultImpl<I, S> implements Result<I, S> {
     }
 
     @Override
-    public final S getState() {
+    public final S getUpdatedState() {
         return this.state;
     }
     

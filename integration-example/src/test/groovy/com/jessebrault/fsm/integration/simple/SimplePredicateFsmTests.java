@@ -24,14 +24,14 @@ public class SimplePredicateFsmTests {
         final var fsm = factory.get();
 
         // HELLO -> GOODBYE
-        final var r0 = fsm.accept(SAY_GOODBYE);
-        Assertions.assertEquals(SAY_GOODBYE, r0.getInput());
-        Assertions.assertEquals(GOODBYE, r0.getState());
+        final var r0 = fsm.apply(SAY_GOODBYE);
+        Assertions.assertEquals(SAY_GOODBYE, r0);
+        Assertions.assertEquals(GOODBYE, fsm.getCurrentState());
 
         // GOODBYE -> HELLO
-        final var r1 = fsm.accept(SAY_HELLO);
-        Assertions.assertEquals(SAY_HELLO, r1.getInput());
-        Assertions.assertEquals(HELLO, r1.getState());
+        final var r1 = fsm.apply(SAY_HELLO);
+        Assertions.assertEquals(SAY_HELLO, r1);
+        Assertions.assertEquals(HELLO, fsm.getCurrentState());
     }
 
 }

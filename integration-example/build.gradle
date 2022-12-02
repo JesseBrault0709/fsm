@@ -7,13 +7,11 @@ repositories {
 }
 
 dependencies {
-    implementation project(':api')
+    implementation project(':lib')
 
     implementation project(':greeting-fsm')
 
     implementation project(':groovy-extension')
-
-    runtimeOnly project(':impl')
 
     // https://mvnrepository.com/artifact/org.apache.groovy/groovy
     implementation 'org.apache.groovy:groovy:4.0.4'

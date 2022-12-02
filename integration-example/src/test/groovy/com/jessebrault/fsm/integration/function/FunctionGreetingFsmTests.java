@@ -23,13 +23,13 @@ public class FunctionGreetingFsmTests {
     public void dslsOutputEquivalentFsms(FunctionGreetingFsmFactory<Integer> factory) {
         final var fsm = factory.get();
 
-        final var r0 = fsm.accept(SAY_GOODBYE);
-        assertEquals(SAY_GOODBYE.name().length(), r0.getOutput());
-        assertEquals(GOODBYE, r0.getState());
+        final var r0 = fsm.apply(SAY_GOODBYE);
+        assertEquals(SAY_GOODBYE.name().length(), r0);
+        assertEquals(GOODBYE, fsm.getCurrentState());
 
-        final var r1 = fsm.accept(SAY_HELLO);
-        assertEquals(SAY_HELLO.name().length(), r1.getOutput());
-        assertEquals(HELLO, r1.getState());
+        final var r1 = fsm.apply(SAY_HELLO);
+        assertEquals(SAY_HELLO.name().length(), r1);
+        assertEquals(HELLO, fsm.getCurrentState());
     }
 
 }

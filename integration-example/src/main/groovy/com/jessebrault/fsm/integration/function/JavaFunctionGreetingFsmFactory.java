@@ -1,7 +1,7 @@
 package com.jessebrault.fsm.integration.function;
 
-import com.jessebrault.fsm.coremachines.function.FunctionFsm;
-import com.jessebrault.fsm.coremachines.function.FunctionFsmBuilder;
+import com.jessebrault.fsm.function.FunctionFsm;
+import com.jessebrault.fsm.function.FunctionFsmBuilderImpl;
 import com.jessebrault.fsm.greeting.FunctionGreetingFsmFactory;
 import com.jessebrault.fsm.greeting.GreetingInputs;
 import com.jessebrault.fsm.greeting.GreetingStates;
@@ -17,13 +17,13 @@ public class JavaFunctionGreetingFsmFactory implements FunctionGreetingFsmFactor
 
     @Override
     public FunctionFsm<GreetingInputs, GreetingStates, Integer> get() {
-        return FunctionFsmBuilder.<GreetingInputs, GreetingStates, Integer>get()
+        return new FunctionFsmBuilderImpl<GreetingInputs, GreetingStates, Integer>()
                 .setInitialState(HELLO)
-                .whileIn(HELLO, tsb ->
-                        tsb.on(input -> Objects.equals(input, SAY_GOODBYE) ? input.name().length() : null).shiftTo(GOODBYE)
+                .whileIn(HELLO, sc ->
+                        sc.on(input -> Objects.equals(input, SAY_GOODBYE) ? input.name().length() : null).shiftTo(GOODBYE)
                 )
-                .whileIn(GOODBYE, tsb ->
-                        tsb.on(input -> Objects.equals(input, SAY_HELLO) ? input.name().length() : null).shiftTo(HELLO)
+                .whileIn(GOODBYE, sc ->
+                        sc.on(input -> Objects.equals(input, SAY_HELLO) ? input.name().length() : null).shiftTo(HELLO)
                 )
                 .build();
     }

@@ -25,7 +25,7 @@ final class FunctionFsmImpl<I, S, O> implements FunctionFsm<I, S, O> {
     }
 
     @Override
-    public FunctionResult<I, S, O> accept(I input) {
+    public FunctionResult<I, S, O> apply(I input) {
         final var transitionSet = this.grammar.get(this.curState);
         this.helper.checkTransitionSet(transitionSet, this.curState);
         for (final var transition : transitionSet.transitions()) {

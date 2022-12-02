@@ -10,8 +10,9 @@ pluginManagement {
 }
 
 rootProject.name = 'fsm'
-include 'api'
-include 'greeting-fsm'
-include 'impl'
-include 'groovy-extension'
-include 'integration-example'
+include ':builder-annotations:annotations'
+include ':builder-annotations:processor'
+include ':greeting-fsm'
+include ':groovy-extension'
+include ':integration-example'
+include ':lib'

@@ -1,21 +1,21 @@
 package com.jessebrault.fsm.groovy;
 
-import com.jessebrault.fsm.coremachines.builder.OnConfigurator;
+import com.jessebrault.fsm.builder.OnConfigurator;
 import groovy.lang.Closure;
 import groovy.transform.stc.ClosureParams;
 import groovy.transform.stc.FromString;
 
-public class OnBuilderExtension {
+public final class OnBuilderExtension {
 
-    public static <S, R> OnConfigurator<S, R> exec(
-            OnConfigurator<S, R> self,
-            @ClosureParams(value = FromString.class, options = "R")
+    public static <S, O, ON extends OnConfigurator<S, O, ON>> ON exec(
+            ON self,
+            @ClosureParams(value = FromString.class, options = "O")
             Closure<?> action
     ) {
         self.exec(action::call);
         return self;
     }
 
-    // private OnBuilderExtension() {}
+    private OnBuilderExtension() {}
 
 }

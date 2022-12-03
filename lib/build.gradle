@@ -59,7 +59,7 @@ test {
 
 publishing {
     publications {
-        register 'api', MavenPublication, {
+        register 'lib', MavenPublication, {
             from components.java
         }
     }

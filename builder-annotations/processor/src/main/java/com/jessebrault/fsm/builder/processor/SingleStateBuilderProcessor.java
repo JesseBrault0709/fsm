@@ -3,14 +3,13 @@ package com.jessebrault.fsm.builder.processor;
 import com.google.auto.service.AutoService;
 import com.jessebrault.fsm.builder.annotations.SingleStateBuilder;
 
-import javax.annotation.processing.AbstractProcessor;
-import javax.annotation.processing.Processor;
-import javax.annotation.processing.RoundEnvironment;
-import javax.annotation.processing.SupportedAnnotationTypes;
+import javax.annotation.processing.*;
+import javax.lang.model.SourceVersion;
 import javax.lang.model.element.TypeElement;
 import java.util.Set;
 
 @AutoService(Processor.class)
+@SupportedSourceVersion(SourceVersion.RELEASE_18)
 @SupportedAnnotationTypes("com.jessebrault.fsm.builder.annotations.SingleStateBuilder")
 public final class SingleStateBuilderProcessor extends AbstractProcessor {
 
@@ -22,7 +21,7 @@ public final class SingleStateBuilderProcessor extends AbstractProcessor {
             }
         }
         for (final var element : roundEnv.getElementsAnnotatedWith(SingleStateBuilder.class)) {
-            System.out.println(element);
+
             if (element instanceof TypeElement te) {
 
             }

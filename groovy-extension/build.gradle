@@ -1,37 +1,18 @@
 plugins {
-    id 'groovy'
+    id 'fsm.common'
+    id 'fsm.groovy'
     id 'java-library'
     id 'maven-publish'
-    id 'com.jessebrault.jbarchiva' version '0.0.1-SNAPSHOT'
 }
 
-repositories {
-    mavenCentral()
+java {
+    withSourcesJar()
 }
 
 dependencies {
     implementation project(':lib')
 
-    // https://mvnrepository.com/artifact/org.apache.groovy/groovy
-    api 'org.apache.groovy:groovy:4.0.4'
-
     testImplementation project(':greeting-fsm')
-
-    // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
-
-    // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
-
-    // https://mvnrepository.com/artifact/org.mockito/mockito-core
-    testImplementation 'org.mockito:mockito-core:4.6.1'
-
-    // https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter
-    testImplementation 'org.mockito:mockito-junit-jupiter:4.6.1'
-}
-
-test {
-    useJUnitPlatform()
 }
 
 publishing {

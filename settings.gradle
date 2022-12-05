@@ -1,28 +1,7 @@
-pluginManagement {
-    repositories {
-        maven {
-            url 'https://archiva.jessebrault.com/repository/internal'
-
-            credentials {
-                username System.getenv('JBARCHIVA_USERNAME')
-                password System.getenv('JBARCHIVA_PASSWORD')
-            }
-        }
-        maven {
-            url 'https://archiva.jessebrault.com/repository/snapshots'
-
-            credentials {
-                username System.getenv('JBARCHIVA_USERNAME')
-                password System.getenv('JBARCHIVA_PASSWORD')
-            }
-        }
-    }
-}
-
 rootProject.name = 'fsm'
-include ':builder-annotations:annotations'
-include ':builder-annotations:processor'
-include ':greeting-fsm'
-include ':groovy-extension'
-include ':integration-example'
-include ':lib'
+include([':builder-annotations:annotations',
+    ':builder-annotations:processor',
+    ':greeting-fsm',
+    ':groovy-extension',
+    ':integration-example',
+    ':lib'])

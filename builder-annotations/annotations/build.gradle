@@ -1,3 +1,4 @@
 plugins {
+    id 'fsm.common'
     id 'java-library'
 }

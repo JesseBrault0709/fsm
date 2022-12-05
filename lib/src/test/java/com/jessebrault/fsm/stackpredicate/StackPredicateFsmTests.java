@@ -2,6 +2,7 @@ package com.jessebrault.fsm.stackpredicate;
 
 import com.jessebrault.fsm.greeting.GreetingInputs;
 import com.jessebrault.fsm.greeting.GreetingStates;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -54,6 +55,7 @@ public class StackPredicateFsmTests {
     // TODO: when a Result interface is added back to the lib,
     // simply test assertTrue(result.matched())
     @Test
+    @Disabled
     public void handlesNullInput() {
         final var fsm = getBuilder()
                 .setInitialState(HELLO)

@@ -10,8 +10,7 @@ java {
 }
 
 dependencies {
-    implementation project(':lib')
-
+    api project(':lib')
     testImplementation project(':greeting-fsm')
 }
 

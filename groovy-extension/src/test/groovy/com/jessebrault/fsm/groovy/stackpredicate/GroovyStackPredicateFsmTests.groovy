@@ -13,10 +13,7 @@ import java.util.function.Consumer
 
 import static com.jessebrault.fsm.greeting.GreetingInputs.SAY_HELLO
 import static com.jessebrault.fsm.greeting.GreetingStates.HELLO
-import static org.mockito.Mockito.mock
-import static org.mockito.Mockito.spy
 import static org.mockito.Mockito.verify
-import static org.mockito.Mockito.when
 
 @ExtendWith(MockitoExtension)
 class GroovyStackPredicateFsmTests {

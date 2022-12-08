@@ -12,9 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension
 import java.util.function.Consumer
 
 import static com.jessebrault.fsm.greeting.GreetingInputs.SAY_GOODBYE
-import static com.jessebrault.fsm.greeting.GreetingStates.GOODBYE
 import static com.jessebrault.fsm.greeting.GreetingStates.HELLO
-import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.verify
 
 @ExtendWith(MockitoExtension)

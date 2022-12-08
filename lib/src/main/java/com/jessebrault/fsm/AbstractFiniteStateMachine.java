@@ -97,7 +97,6 @@ public abstract class AbstractFiniteStateMachine<
             final var output = this.test(transition.on(), input);
             if (output != null) {
                 logger.debug("matched {}, output: {}", transition.on(), output);
-                this.shiftTo(transition.shiftTo());
                 this.onMatch(transition, output);
                 logger.trace(exit, "output: {}", output);
                 return output;

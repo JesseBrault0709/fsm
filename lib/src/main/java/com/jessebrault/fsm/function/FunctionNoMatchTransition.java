@@ -1,14 +1,15 @@
 package com.jessebrault.fsm.function;
 
-import com.jessebrault.fsm.components.NoMatchTransition;
-import org.jetbrains.annotations.Nullable;
+import com.jessebrault.fsm.components.AbstractNoMatchTransition;
 
 import java.util.Collection;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-public record FunctionNoMatchTransition<I, S, O>(
-        @Nullable S shiftTo,
-        Collection<Consumer<I>> inputConsumers,
-        Function<I, O> instead
-) implements NoMatchTransition<I, S, O> {}
+public final class FunctionNoMatchTransition<I, S, O> extends AbstractNoMatchTransition<I, S, O> {
+
+    public FunctionNoMatchTransition(S shiftTo, Collection<Consumer<I>> inputConsumers, Function<I, O> instead) {
+        super(shiftTo, inputConsumers, instead);
+    }
+
+}

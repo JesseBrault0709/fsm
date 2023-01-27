@@ -1,16 +1,22 @@
 package com.jessebrault.fsm.stacksimple;
 
-import com.jessebrault.fsm.components.StackNoMatchTransition;
+import com.jessebrault.fsm.components.AbstractStackNoMatchTransition;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-public record StackSimpleNoMatchTransition<I, S>(
-        S shiftTo,
-        Collection<Consumer<I>> inputConsumers,
-        Function<I, I> instead,
-        List<S> pushStates,
-        int popStates
-) implements StackNoMatchTransition<I, S, I> {}
+public final class StackSimpleNoMatchTransition<I, S> extends AbstractStackNoMatchTransition<I, S, I> {
+
+    public StackSimpleNoMatchTransition(
+            S shiftTo,
+            Collection<Consumer<I>> inputConsumers,
+            Function<I, I> instead,
+            List<S> pushStates,
+            int popStates
+    ) {
+        super(shiftTo, inputConsumers, instead, pushStates, popStates);
+    }
+
+}

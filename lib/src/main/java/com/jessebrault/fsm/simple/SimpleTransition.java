@@ -1,13 +1,14 @@
 package com.jessebrault.fsm.simple;
 
-import com.jessebrault.fsm.components.Transition;
-import org.jetbrains.annotations.Nullable;
+import com.jessebrault.fsm.components.AbstractTransition;
 
 import java.util.Collection;
 import java.util.function.Consumer;
 
-public record SimpleTransition<I, S>(
-        I on,
-        @Nullable S shiftTo,
-        Collection<Consumer<I>> outputConsumers
-) implements Transition<S, I, I> {}
+public final class SimpleTransition<I, S> extends AbstractTransition<S, I, I> {
+
+    public SimpleTransition(I on, S shiftTo, Collection<Consumer<I>> outputConsumers) {
+        super(on, shiftTo, outputConsumers);
+    }
+
+}

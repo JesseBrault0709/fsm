@@ -1,14 +1,15 @@
 package com.jessebrault.fsm.predicate;
 
-import com.jessebrault.fsm.components.Transition;
-import org.jetbrains.annotations.Nullable;
+import com.jessebrault.fsm.components.AbstractTransition;
 
 import java.util.Collection;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-public record PredicateTransition<I, S>(
-        Predicate<I> on,
-        @Nullable S shiftTo,
-        Collection<Consumer<I>> outputConsumers
-) implements Transition<S, I, Predicate<I>> {}
+public final class PredicateTransition<I, S> extends AbstractTransition<S, I, Predicate<I>> {
+
+    public PredicateTransition(Predicate<I> on, S shiftTo, Collection<Consumer<I>> outputConsumers) {
+        super(on, shiftTo, outputConsumers);
+    }
+    
+}

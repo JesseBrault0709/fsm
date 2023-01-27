@@ -1,17 +1,22 @@
 package com.jessebrault.fsm.stackpredicate;
 
-import com.jessebrault.fsm.components.StackNoMatchTransition;
-import org.jetbrains.annotations.Nullable;
+import com.jessebrault.fsm.components.AbstractStackNoMatchTransition;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-public record StackPredicateNoMatchTransition<I, S>(
-        @Nullable S shiftTo,
-        Collection<Consumer<I>> inputConsumers,
-        Function<I, I> instead,
-        List<S> pushStates,
-        int popStates
-) implements StackNoMatchTransition<I, S, I> {}
+public final class StackPredicateNoMatchTransition<I, S> extends AbstractStackNoMatchTransition<I, S, I> {
+
+    public StackPredicateNoMatchTransition(
+            S shiftTo,
+            Collection<Consumer<I>> inputConsumers,
+            Function<I, I> instead,
+            List<S> pushStates,
+            int popStates
+    ) {
+        super(shiftTo, inputConsumers, instead, pushStates, popStates);
+    }
+
+}

@@ -46,7 +46,7 @@ final class StackFunctionStateConfiguratorImpl<I, S, O> extends AbstractStackSta
                 onNoMatchConfigurator.getInputConsumers(),
                 onNoMatchConfigurator.getInstead(),
                 onNoMatchConfigurator.getPushStates(),
-                onNoMatch().getPopStates()
+                onNoMatchConfigurator.getPopStates()
         );
 
         return new StackFunctionStateGrammar<>(transitions, noMatchTransition);

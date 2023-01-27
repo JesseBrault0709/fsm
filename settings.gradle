@@ -1,7 +1,2 @@
 rootProject.name = 'fsm'
-include([':builder-annotations:annotations',
-    ':builder-annotations:processor',
-    ':greeting-fsm',
-    ':groovy-extension',
-    ':integration-example',
-    ':lib'])
+include ':greeting-fsm', ':groovy-extension', ':integration-example', ':lib'

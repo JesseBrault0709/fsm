@@ -8,5 +8,5 @@ repositories {
 
 dependencies {
     // https://mvnrepository.com/artifact/org.apache.groovy/groovy
-    implementation 'org.apache.groovy:groovy:4.0.4'
+    implementation 'org.apache.groovy:groovy:4.0.8'
 }

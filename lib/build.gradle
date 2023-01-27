@@ -9,8 +9,6 @@ java {
 }
 
 dependencies {
-    compileOnly project(':builder-annotations:annotations')
-    annotationProcessor project(':builder-annotations:processor')
     testImplementation project(':greeting-fsm')
 }
 

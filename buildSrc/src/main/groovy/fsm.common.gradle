@@ -1,6 +1,7 @@
 plugins {
     id 'com.jessebrault.jbarchiva'
     id 'java'
+    id 'java-library'
 }
 
 repositories {
@@ -8,10 +9,8 @@ repositories {
 }
 
 dependencies {
-    /* CompileOnly and Implementation */
-
     // https://mvnrepository.com/artifact/org.jetbrains/annotations
-    compileOnly 'org.jetbrains:annotations:23.0.0'
+    api 'org.jetbrains:annotations:23.0.0'
 
     /* Logging */
 

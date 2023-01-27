@@ -27,9 +27,4 @@ final class PredicateFsmImpl<I, S> extends AbstractSingleStateFsm<
         }
     }
 
-    @Override
-    protected I getOnNoMatchOutput(I input) {
-        return null;
-    }
-
 }

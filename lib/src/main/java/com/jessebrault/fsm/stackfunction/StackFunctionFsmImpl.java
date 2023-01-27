@@ -23,9 +23,4 @@ final class StackFunctionFsmImpl<I, S, O> extends AbstractStackFsm<
         return on.apply(input);
     }
 
-    @Override
-    protected @Nullable O getOnNoMatchOutput(I input) {
-        return null;
-    }
-
 }

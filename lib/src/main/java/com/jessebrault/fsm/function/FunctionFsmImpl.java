@@ -23,9 +23,4 @@ final class FunctionFsmImpl<I, S, O> extends AbstractSingleStateFsm<
         return on.apply(input);
     }
 
-    @Override
-    protected O getOnNoMatchOutput(I input) {
-        return null;
-    }
-
 }

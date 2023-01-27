@@ -41,6 +41,4 @@ public abstract class AbstractSingleStateFsm<
         return this.currentState;
     }
 
-
-
 }

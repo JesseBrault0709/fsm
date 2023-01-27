@@ -24,11 +24,6 @@ final class SimpleFsmImpl<I, S> extends AbstractSingleStateFsm<
     }
 
     @Override
-    protected @Nullable I getOnNoMatchOutput(I input) {
-        return null;
-    }
-
-    @Override
     protected void validateInput(@Nullable I input) {
         Objects.requireNonNull(input);
     }

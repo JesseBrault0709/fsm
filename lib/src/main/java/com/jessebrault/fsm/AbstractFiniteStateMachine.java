@@ -83,8 +83,6 @@ public abstract class AbstractFiniteStateMachine<
         logger.trace(exit, "");
     }
 
-    protected abstract @Nullable O getOnNoMatchOutput(I input);
-
     @Override
     public final @Nullable O apply(I input) {
         logger.trace(enter, "input: {}", input);
@@ -102,8 +100,14 @@ public abstract class AbstractFiniteStateMachine<
                 return output;
             }
         }
-        this.onNoMatch(stateGrammar.noMatchTransition(), input);
-        final var output = this.getOnNoMatchOutput(input);
+        final var noMatchTransition = stateGrammar.noMatchTransition();
+        this.onNoMatch(noMatchTransition, input);
+        O output = null;
+        final var instead = noMatchTransition.instead();
+        if (instead != null) {
+            output = instead.apply(input);
+            logger.trace(exit, "output: {}", output);
+        }
         logger.trace(exit, "output: {}", output);
         return output;
     }

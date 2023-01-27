@@ -90,4 +90,16 @@ public class SimpleFsmTests {
         verify(consumer).accept(BAD_INPUT);
     }
 
+    @Test
+    public void onNoMatchReturnsInsteadOutput() {
+        final var fsm = getBuilder()
+                .setInitialState(HELLO)
+                .whileIn(HELLO, sc -> {
+                    sc.onNoMatch().instead(input -> SAY_HELLO);
+                })
+                .build();
+        final var output = fsm.apply(BAD_INPUT);
+        assertEquals(SAY_HELLO, output);
+    }
+
 }

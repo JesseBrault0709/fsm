@@ -32,9 +32,4 @@ final class StackSimpleFsmImpl<I, S> extends AbstractStackFsm<
         }
     }
 
-    @Override
-    protected @Nullable I getOnNoMatchOutput(I input) {
-        return null;
-    }
-
 }

@@ -23,9 +23,4 @@ final class StackPredicateFsmImpl<I, S> extends AbstractStackFsm<
         return on.test(input) ? input : null;
     }
 
-    @Override
-    protected @Nullable I getOnNoMatchOutput(I input) {
-        return null;
-    }
-
 }

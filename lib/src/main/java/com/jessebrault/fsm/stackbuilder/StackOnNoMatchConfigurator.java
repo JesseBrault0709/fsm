@@ -4,8 +4,8 @@ import com.jessebrault.fsm.builder.OnNoMatchConfigurator;
 
 import java.util.List;
 
-public interface StackOnNoMatchConfigurator<I, S, ONM extends StackOnNoMatchConfigurator<I, S, ONM>>
-        extends OnNoMatchConfigurator<I, S, ONM> {
+public interface StackOnNoMatchConfigurator<I, S, O, ONM extends StackOnNoMatchConfigurator<I, S, O, ONM>>
+        extends OnNoMatchConfigurator<I, S, O, ONM> {
 
     ONM pushState(S state);
 

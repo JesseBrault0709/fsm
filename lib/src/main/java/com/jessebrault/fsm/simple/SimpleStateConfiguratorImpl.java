@@ -37,7 +37,8 @@ final class SimpleStateConfiguratorImpl<I, S> extends AbstractStateConfigurator<
         final var onNoMatchConfigurator = this.getOnNoMatchConfigurator();
         final var noMatchTransition = new SimpleNoMatchTransition<>(
                 onNoMatchConfigurator.getShiftTo(),
-                onNoMatchConfigurator.getInputConsumers()
+                onNoMatchConfigurator.getInputConsumers(),
+                onNoMatchConfigurator.getInstead()
         );
         return new SimpleStateGrammar<>(transitions, noMatchTransition);
     }

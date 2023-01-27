@@ -5,8 +5,8 @@ import com.jessebrault.fsm.builder.AbstractOnNoMatchConfigurator;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractStackOnNoMatchConfigurator<I, S, ONM extends StackOnNoMatchConfigurator<I, S, ONM>>
-        extends AbstractOnNoMatchConfigurator<I, S, ONM> implements StackOnNoMatchConfigurator<I, S, ONM> {
+public abstract class AbstractStackOnNoMatchConfigurator<I, S, O, ONM extends StackOnNoMatchConfigurator<I, S, O, ONM>>
+        extends AbstractOnNoMatchConfigurator<I, S, O, ONM> implements StackOnNoMatchConfigurator<I, S, O, ONM> {
 
     private final List<S> pushStates = new ArrayList<>();
     private int popStates;

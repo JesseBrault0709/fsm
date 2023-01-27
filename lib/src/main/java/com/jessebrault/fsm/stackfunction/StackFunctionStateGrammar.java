@@ -7,9 +7,9 @@ import java.util.function.Function;
 
 public record StackFunctionStateGrammar<I, S, O>(
         Collection<StackFunctionTransition<I, S, O>> transitions,
-        StackFunctionNoMatchTransition<I, S> noMatchTransition
+        StackFunctionNoMatchTransition<I, S, O> noMatchTransition
 ) implements StackStateGrammar<
         I, S, O, Function<I, O>,
         StackFunctionTransition<I, S, O>,
-        StackFunctionNoMatchTransition<I, S>
+        StackFunctionNoMatchTransition<I, S, O>
         > {}

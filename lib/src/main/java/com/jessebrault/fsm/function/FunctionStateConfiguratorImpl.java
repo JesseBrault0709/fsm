@@ -8,10 +8,10 @@ import java.util.function.Function;
 final class FunctionStateConfiguratorImpl<I, S, O> extends AbstractStateConfigurator<
         I, S, O, Function<I, O>,
         FunctionOnConfigurator<I, S, O>,
-        FunctionOnNoMatchConfigurator<I, S>,
+        FunctionOnNoMatchConfigurator<I, S, O>,
         FunctionStateGrammar<I, S, O>,
         FunctionTransition<I, S, O>,
-        FunctionNoMatchTransition<I, S>
+        FunctionNoMatchTransition<I, S, O>
         > implements FunctionStateConfigurator<I, S, O> {
 
     public FunctionStateConfiguratorImpl() {
@@ -36,7 +36,8 @@ final class FunctionStateConfiguratorImpl<I, S, O> extends AbstractStateConfigur
         final var onNoMatchConfigurator = this.getOnNoMatchConfigurator();
         final var noMatchTransition = new FunctionNoMatchTransition<>(
                 onNoMatchConfigurator.getShiftTo(),
-                onNoMatchConfigurator.getInputConsumers()
+                onNoMatchConfigurator.getInputConsumers(),
+                onNoMatchConfigurator.getInstead()
         );
         return new FunctionStateGrammar<>(transitions, noMatchTransition);
     }

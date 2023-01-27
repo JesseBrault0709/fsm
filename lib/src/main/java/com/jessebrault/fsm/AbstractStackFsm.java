@@ -16,7 +16,7 @@ public abstract class AbstractStackFsm<
         I, S, O, C,
         SG extends StackStateGrammar<I, S, O, C, T, NMT>,
         T extends StackTransition<S, O, C>,
-        NMT extends StackNoMatchTransition<I, S>
+        NMT extends StackNoMatchTransition<I, S, O>
         > extends AbstractFiniteStateMachine<I, S, O, C, SG, T, NMT>
         implements StackFiniteStateMachine<I, S, O> {
 

@@ -17,7 +17,7 @@ public abstract class AbstractFiniteStateMachine<
         I, S, O, C,
         SG extends StateGrammar<I, S, O, C, T, NMT>,
         T extends Transition<S, O, C>,
-        NMT extends NoMatchTransition<I, S>
+        NMT extends NoMatchTransition<I, S, O>
         > implements FiniteStateMachine<I, S, O> {
 
     private static final Logger logger = LoggerFactory.getLogger(AbstractFiniteStateMachine.class);

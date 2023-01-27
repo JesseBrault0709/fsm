@@ -7,8 +7,8 @@ import java.util.function.Function;
 
 public record FunctionStateGrammar<I, S, O>(
         Collection<FunctionTransition<I, S, O>> transitions,
-        FunctionNoMatchTransition<I, S> noMatchTransition
+        FunctionNoMatchTransition<I, S, O> noMatchTransition
 ) implements StateGrammar<
         I, S, O, Function<I, O>,
         FunctionTransition<I, S, O>,
-        FunctionNoMatchTransition<I, S>> {}
+        FunctionNoMatchTransition<I, S, O>> {}

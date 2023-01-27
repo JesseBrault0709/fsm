@@ -11,7 +11,7 @@ final class StackFunctionFsmImpl<I, S, O> extends AbstractStackFsm<
         I, S, O, Function<I, O>,
         StackFunctionStateGrammar<I, S, O>,
         StackFunctionTransition<I, S, O>,
-        StackFunctionNoMatchTransition<I, S>
+        StackFunctionNoMatchTransition<I, S, O>
         > implements StackFunctionFsm<I, S, O> {
 
     public StackFunctionFsmImpl(Map<S, StackFunctionStateGrammar<I, S, O>> grammar, S initialState) {

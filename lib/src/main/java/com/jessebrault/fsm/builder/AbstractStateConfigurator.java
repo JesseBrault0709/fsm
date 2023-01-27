@@ -10,10 +10,10 @@ import java.util.Map;
 public abstract class AbstractStateConfigurator<
         I, S, O, C,
         ON extends OnConfigurator<S, O, ON>,
-        ONM extends OnNoMatchConfigurator<I, S, ONM>,
+        ONM extends OnNoMatchConfigurator<I, S, O, ONM>,
         SG extends StateGrammar<I, S, O, C, T, NMT>,
         T extends Transition<S, O, C>,
-        NMT extends NoMatchTransition<I, S>
+        NMT extends NoMatchTransition<I, S, O>
         > implements StateConfigurator<I, S, O, C, ON, ONM, SG, T, NMT> {
 
     private final ONM onNoMatchConfigurator;

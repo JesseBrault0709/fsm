@@ -3,7 +3,7 @@ package com.jessebrault.fsm.simple;
 import com.jessebrault.fsm.builder.AbstractOnNoMatchConfigurator;
 
 final class SimpleOnNoMatchConfiguratorImpl<I, S>
-        extends AbstractOnNoMatchConfigurator<I, S, SimpleOnNoMatchConfigurator<I, S>>
+        extends AbstractOnNoMatchConfigurator<I, S, I, SimpleOnNoMatchConfigurator<I, S>>
         implements SimpleOnNoMatchConfigurator<I, S> {
 
     @Override

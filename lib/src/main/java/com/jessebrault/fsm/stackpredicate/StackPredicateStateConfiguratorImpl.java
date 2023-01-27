@@ -44,6 +44,7 @@ final class StackPredicateStateConfiguratorImpl<I, S> extends AbstractStackState
         final var noMatchTransition = new StackPredicateNoMatchTransition<>(
                 onNoMatchConfigurator.getShiftTo(),
                 onNoMatchConfigurator.getInputConsumers(),
+                onNoMatchConfigurator.getInstead(),
                 onNoMatchConfigurator.getPushStates(),
                 onNoMatch().getPopStates()
         );

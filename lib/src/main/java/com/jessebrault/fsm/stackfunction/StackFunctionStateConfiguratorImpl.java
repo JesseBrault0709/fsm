@@ -8,10 +8,10 @@ import java.util.function.Function;
 final class StackFunctionStateConfiguratorImpl<I, S, O> extends AbstractStackStateConfigurator<
         I, S, O, Function<I, O>,
         StackFunctionOnConfigurator<S, O>,
-        StackFunctionOnNoMatchConfigurator<I, S>,
+        StackFunctionOnNoMatchConfigurator<I, S, O>,
         StackFunctionStateGrammar<I, S, O>,
         StackFunctionTransition<I, S, O>,
-        StackFunctionNoMatchTransition<I, S>
+        StackFunctionNoMatchTransition<I, S, O>
         > implements StackFunctionStateConfigurator<I, S, O> {
 
     public StackFunctionStateConfiguratorImpl() {
@@ -44,6 +44,7 @@ final class StackFunctionStateConfiguratorImpl<I, S, O> extends AbstractStackSta
         final var noMatchTransition = new StackFunctionNoMatchTransition<>(
                 onNoMatchConfigurator.getShiftTo(),
                 onNoMatchConfigurator.getInputConsumers(),
+                onNoMatchConfigurator.getInstead(),
                 onNoMatchConfigurator.getPushStates(),
                 onNoMatch().getPopStates()
         );

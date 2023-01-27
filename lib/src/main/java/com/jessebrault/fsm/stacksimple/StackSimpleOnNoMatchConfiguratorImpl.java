@@ -3,7 +3,7 @@ package com.jessebrault.fsm.stacksimple;
 import com.jessebrault.fsm.stackbuilder.AbstractStackOnNoMatchConfigurator;
 
 final class StackSimpleOnNoMatchConfiguratorImpl<I, S>
-        extends AbstractStackOnNoMatchConfigurator<I, S, StackSimpleOnNoMatchConfigurator<I, S>>
+        extends AbstractStackOnNoMatchConfigurator<I, S, I, StackSimpleOnNoMatchConfigurator<I, S>>
         implements StackSimpleOnNoMatchConfigurator<I, S> {
 
     @Override

@@ -37,7 +37,8 @@ final class PredicateStateConfiguratorImpl<I, S>
         final var onNoMatchConfigurator = this.getOnNoMatchConfigurator();
         final var noMatchTransition = new PredicateNoMatchTransition<>(
                 onNoMatchConfigurator.getShiftTo(),
-                onNoMatchConfigurator.getInputConsumers()
+                onNoMatchConfigurator.getInputConsumers(),
+                onNoMatchConfigurator.getInstead()
         );
         return new PredicateStateGrammar<>(transitions, noMatchTransition);
     }

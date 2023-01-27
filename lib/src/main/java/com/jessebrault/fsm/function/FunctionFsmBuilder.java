@@ -8,10 +8,10 @@ public interface FunctionFsmBuilder<I, S, O> extends FsmBuilder<
         I, S, O, Function<I, O>,
         FunctionStateConfigurator<I, S, O>,
         FunctionOnConfigurator<I, S, O>,
-        FunctionOnNoMatchConfigurator<I, S>,
+        FunctionOnNoMatchConfigurator<I, S, O>,
         FunctionStateGrammar<I, S, O>,
         FunctionTransition<I, S, O>,
-        FunctionNoMatchTransition<I, S>,
+        FunctionNoMatchTransition<I, S, O>,
         FunctionFsm<I, S, O>,
         FunctionFsmBuilder<I, S, O>
         > {}

@@ -11,7 +11,7 @@ final class FunctionFsmImpl<I, S, O> extends AbstractSingleStateFsm<
         I, S, O, Function<I, O>,
         FunctionStateGrammar<I, S, O>,
         FunctionTransition<I, S, O>,
-        FunctionNoMatchTransition<I, S>
+        FunctionNoMatchTransition<I, S, O>
         > implements FunctionFsm<I, S, O> {
 
     public FunctionFsmImpl(Map<S, FunctionStateGrammar<I, S, O>> grammar, S initialState) {

@@ -46,7 +46,7 @@ final class StackPredicateStateConfiguratorImpl<I, S> extends AbstractStackState
                 onNoMatchConfigurator.getInputConsumers(),
                 onNoMatchConfigurator.getInstead(),
                 onNoMatchConfigurator.getPushStates(),
-                onNoMatch().getPopStates()
+                onNoMatchConfigurator.getPopStates()
         );
 
         return new StackPredicateStateGrammar<>(transitions, noMatchTransition);

@@ -10,7 +10,7 @@ public final class OnNoMatchBuilderExtension {
     public static <I, S, O, ONM extends OnNoMatchConfigurator<I, S, O, ONM>> ONM exec(
             ONM self,
             @ClosureParams(value = FromString.class, options = "I")
-            Closure<?> action
+            Closure<Void> action
     ) {
         self.exec(action::call);
         return self;

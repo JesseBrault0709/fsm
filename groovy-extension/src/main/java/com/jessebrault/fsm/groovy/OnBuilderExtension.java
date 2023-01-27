@@ -10,7 +10,7 @@ public final class OnBuilderExtension {
     public static <S, O, ON extends OnConfigurator<S, O, ON>> ON exec(
             ON self,
             @ClosureParams(value = FromString.class, options = "O")
-            Closure<?> action
+            Closure<Void> action
     ) {
         self.exec(action::call);
         return self;

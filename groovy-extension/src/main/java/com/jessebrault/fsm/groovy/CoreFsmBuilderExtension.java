@@ -24,7 +24,7 @@ public final class CoreFsmBuilderExtension {
             B self,
             S state,
             @DelegatesTo(strategy = Closure.DELEGATE_FIRST, type = "SC")
-            Closure<?> configureState
+            Closure<Void> configureState
     ) {
         self.whileIn(state, sc -> {
             configureState.setResolveStrategy(Closure.DELEGATE_FIRST);
